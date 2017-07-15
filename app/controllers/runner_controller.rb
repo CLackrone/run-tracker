@@ -14,5 +14,12 @@ class RunnerController < ApplicationController
 		end
 	end
 
+	get '/login' do 
+		erb :'/runner/login'
+	end
+
+	post '/login' do 
+	end
+
 
 end
