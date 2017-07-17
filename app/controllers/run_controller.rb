@@ -1,8 +1,6 @@
 class RunController < ApplicationController
+
 	get '/runs' do 
-		#@runs = current_user.runs ???
-		#add "My runs" link to runner slug page
-		#build out runs.erb
 		@runs = Run.all
 		if logged_in?
 			erb :'/runs/runs'
@@ -15,7 +13,6 @@ class RunController < ApplicationController
 		if logged_in?
 			erb :'/runs/create_run'
 		else
-			#add flash message - you must be logged in to create a run
 			redirect '/login'
 		end
 	end
