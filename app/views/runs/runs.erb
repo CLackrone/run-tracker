@@ -1,1 +1,7 @@
-<p>View your past runs, <%= @runner %></p>
+<h1>View all past runs, <%= @runner %></h1>
+
+<% @runs.each do |run| %>
+	<%= run.location %><br><br>
+	<%= run.date %><br><br>
+	<%= run.distance %><br><br>
+<% end %>
