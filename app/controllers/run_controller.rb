@@ -2,6 +2,7 @@ class RunController < ApplicationController
 	get '/runs' do 
 		#@runs = current_user.runs ???
 		#add "My runs" link to runner slug page
+		#build out runs.erb
 		@runner = current_user.username
 		@runs = Run.all
 		if logged_in?
@@ -30,8 +31,15 @@ class RunController < ApplicationController
 		end
 	end
 
+	get '/runs/:id' do 
+		if logged_in?
+			@run = Run.find_by_id(params[:id])
+			erb :'/runs/show_run'
+		else
+			redirect '/login'
+		end
+	end
 
-	
 
 
 
