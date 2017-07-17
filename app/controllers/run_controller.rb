@@ -3,7 +3,6 @@ class RunController < ApplicationController
 		#@runs = current_user.runs ???
 		#add "My runs" link to runner slug page
 		#build out runs.erb
-		@runner = current_user.username
 		@runs = Run.all
 		if logged_in?
 			erb :'/runs/runs'
@@ -66,9 +65,19 @@ class RunController < ApplicationController
 		end
 	end
 
-
-
-
+	delete '/runs/:id/delete' do 
+		if logged_in?
+			@run = Run.find_by_id(params[:id])
+			if @run.runner_id == current_user.id 
+				@run.delete
+				redirect '/runs'
+			else
+				redirect '/runs'
+			end
+		else
+			redirect '/login'
+		end
+	end
 
 end
 

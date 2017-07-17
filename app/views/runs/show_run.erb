@@ -1,3 +1,12 @@
-<%= @run.location %><br>
-<%= @run.date %><br>
-<%= @run.distance %><br>
+<p><%= @run.location %></p>
+<p><%= @run.date %></p>
+<p><%= @run.distance %></p>
+
+<form action="/runs/<%= @run.id %>/edit">
+	<input type="submit" value="Edit Run">
+</form><br>
+
+<form action="/runs/<%= @run.id %>/delete" method="post">
+	<input id="hidden" type="hidden" name="_method" value="delete">
+	<input type="submit" value="Delete Run">
+</form>

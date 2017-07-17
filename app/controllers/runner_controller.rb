@@ -50,7 +50,10 @@ class RunnerController < ApplicationController
 		end
 	end
 
-	#create a slug/show route
+	get '/runners/:slug' do 
+		@runner = Runner.find_by_slug(params[:slug])
+		erb :'/runner/show'
+	end
 
 
 end

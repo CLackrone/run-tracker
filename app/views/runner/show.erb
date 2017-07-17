@@ -1,1 +1,9 @@
-show.erb
+<p><%= @runner.username %>'s runs</p>
+
+<% @runner.runs.each do |run| %>
+	<div>
+		<%= run.location %><br>
+		<%= run.date %><br>
+		<%= run.distance %><br>
+	</div><br>
+<% end %>
