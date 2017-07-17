@@ -1,7 +1,11 @@
 class RunnerController < ApplicationController
 
 	get '/signup' do 
+		if !logged_in?
 			erb :'/runner/create_runner'
+		else
+			redirect '/login'
+		end
 	end
 
 	post '/signup' do 
@@ -30,6 +34,7 @@ class RunnerController < ApplicationController
 			session[:user_id] = runner.id
 			redirect '/runs'
 		else
+			#add flash message
 			redirect '/signup'
 		end
 	end
