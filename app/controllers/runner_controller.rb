@@ -14,7 +14,7 @@ class RunnerController < ApplicationController
 			session[:user_id] = runner.id 
 			redirect '/runs'
 		else
-			#this works - needs a flash message
+			#add flash message - Please enter valid information- all fields required.
 			redirect '/signup'
 		end
 	end
@@ -23,7 +23,6 @@ class RunnerController < ApplicationController
 		if !logged_in?
 			erb :'/runner/login'
 		else
-			#add flash message
 			redirect '/runs'
 		end
 	end
@@ -34,7 +33,7 @@ class RunnerController < ApplicationController
 			session[:user_id] = runner.id
 			redirect '/runs'
 		else
-			#add flash message
+			#add flash message - Your username or password did not match our records.
 			redirect '/signup'
 		end
 	end
@@ -42,17 +41,18 @@ class RunnerController < ApplicationController
 	get '/logout' do
 		if logged_in?
 			session.destroy
-			#add flash message - you have been successfully logged out
 			redirect '/'
 		else
-			#add flash message - you are not logged in
 			redirect '/'
 		end
 	end
 
 	get '/runners/:slug' do 
-		@runner = Runner.find_by_slug(params[:slug])
-		erb :'/runner/show'
+		if @runner = Runner.find_by_slug(params[:slug])
+			erb :'/runner/show'
+		else 
+			redirect '/'
+		end
 	end
 
 
