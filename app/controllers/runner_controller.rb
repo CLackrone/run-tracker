@@ -42,8 +42,10 @@ class RunnerController < ApplicationController
 	get '/logout' do
 		if logged_in?
 			session.destroy
-			redirect '/login'
+			#add flash message - you have been successfully logged out
+			redirect '/'
 		else
+			#add flash message - you are not logged in
 			redirect '/'
 		end
 	end
