@@ -1,1 +1,11 @@
-<p>You made it and this page works!</p>
+<h1>Edit your run</h1>
+
+<form method="post" action="/runs/<%= @run.id %>">
+	<label>Location:</label>
+	<input type="text" name="location" id="location" value="<%= @run.location %>"><br><br>
+	<label>Date: </label>
+	<input type="text" name="date" id="date" value="<%= @run.date %>"><br><br>
+	<label>Distance: </label>
+	<input type="text" name="distance" id="distance" value="<%= @run.distance %>"><br><br>
+	<input type="submit" value="Edit run">
+</form>

@@ -3,4 +3,14 @@ class Runner < ActiveRecord::Base
 
 	has_secure_password
 	validates :username, :email, presence: true
+
+
+	def slug
+    	username.downcase.gsub(" ","-")
+  	end
+
+  	def self.find_by_slug(slug)
+   		Runner.all.find{|runner| runner.slug == slug}
+  	end
+
 end

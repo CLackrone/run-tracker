@@ -53,7 +53,17 @@ class RunController < ApplicationController
 		end
 	end
 
-	patch '/runs/' do 
+	post "/runs/:id" do 
+		if params[:location] == "" || params[:date] == "" || params[:distance] == ""
+			redirect "/runs/#{params[:id]}/edit"
+		else 
+			@run = Run.find_by_id(params[:id])
+			@run.location = params[:location]
+			@run.date = params[:date]
+			@run.distance = params[:distance]
+			@run.save
+			redirect "/runs/#{@run.id}"
+		end
 	end
 
 
