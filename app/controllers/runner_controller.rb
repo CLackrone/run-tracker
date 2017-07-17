@@ -1,5 +1,10 @@
 class RunnerController < ApplicationController
 
+	get '/runners' do 
+		@runners = Runner.all 
+		erb :'/runner/runners'
+	end
+
 	get '/signup' do 
 		if !logged_in?
 			erb :'/runner/create_runner'
