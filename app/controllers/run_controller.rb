@@ -40,15 +40,48 @@ class RunController < ApplicationController
 		end
 	end
 
+	get '/runs/:id/edit' do 
+		if logged_in?
+			@run = Run.find_by_id(params[:id])
+			if @run.runner_id == current_user.id 
+				erb :'/runs/edit_run'
+			else
+				redirect '/runs'
+			end
+		else
+			redirect '/login'
+		end
+	end
 
-
-
-
-
-
+	patch '/runs/' do 
+	end
 
 
 
 
 
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
