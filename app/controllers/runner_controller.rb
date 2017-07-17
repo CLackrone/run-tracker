@@ -50,5 +50,7 @@ class RunnerController < ApplicationController
 		end
 	end
 
+	#create a slug/show route
+
 
 end

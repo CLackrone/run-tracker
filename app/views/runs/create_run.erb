@@ -1,1 +1,12 @@
-create_run.erb
+<p>Tell us about your run!</p>
+
+<form method="post" action="/runs">
+	<label>Location: </label>
+	<input type="text" name="location" id="location"><br><br>
+	<label>Date: </label>
+	<input type="text" name="date" id="date"><br><br>
+	<label>Distance: </label>
+	<input type="text" name="distance" id="distance"><br><br>
+	<input type="submit" value="Create run">
+</form>
+
