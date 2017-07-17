@@ -25,6 +25,22 @@ class RunnerController < ApplicationController
 	end
 
 	post '/login' do 
+		runner = Runner.find_by(:username => params[:username])
+		if runner && runner.authenticate(params[:password])
+			session[:user_id] = runner.id
+			redirect '/runs'
+		else
+			redirect '/signup'
+		end
+	end
+
+	get '/logout' do
+		if logged_in?
+			session.destroy
+			redirect '/login'
+		else
+			redirect '/'
+		end
 	end
 
 
