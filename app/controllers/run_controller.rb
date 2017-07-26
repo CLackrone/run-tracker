@@ -49,16 +49,15 @@ class RunController < ApplicationController
 	end
 
 	post "/runs/:id" do 
-		if params[:location] == "" || params[:date] == "" || params[:distance] == ""
-			redirect "/runs/#{params[:id]}/edit"
-		else 
-			@run = Run.find_by_id(params[:id])
-			@run.location = params[:location]
-			@run.date = params[:date]
-			@run.distance = params[:distance]
-			@run.save
-			redirect "/runs/#{@run.id}"
-		end
+		if @run = Run.find_by_id(params[:id])
+			if @run.update(params)
+				redirect "/runs/#{@run.id}"
+			else 
+				erb :'/runs/edit_run'
+			end 
+		else
+			redirect '/runs'
+		end 
 	end
 
 	delete '/runs/:id/delete' do 
@@ -78,27 +77,3 @@ class RunController < ApplicationController
 	
 
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

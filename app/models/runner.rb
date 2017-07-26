@@ -3,7 +3,7 @@ class Runner < ActiveRecord::Base
 
 	has_secure_password
 	validates :username, :email, presence: true
-
+	validates :username, :email, uniqueness: true
 
 	def slug
     	username.downcase.gsub(" ","-")

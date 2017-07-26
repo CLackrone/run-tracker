@@ -3,13 +3,18 @@
 <p>Distance: <%= @run.distance %> miles</p>
 <p>Runner: <%= @run.runner.username %></p>
 
-<form action="/runs/<%= @run.id %>/edit">
-	<input type="submit" value="Edit Run">
-</form><br>
+<% if @run.runner == current_user %>
+	<form action="/runs/<%= @run.id %>/edit">
+		<input type="submit" value="Edit Run">
+	</form><br>
 
-<form action="/runs/<%= @run.id %>/delete" method="post">
-	<input id="hidden" type="hidden" name="_method" value="delete">
-	<input type="submit" value="Delete Run">
-</form><br>
+	<form action="/runs/<%= @run.id %>/delete" method="post">
+		<input id="hidden" type="hidden" name="_method" value="delete">
+		<input type="submit" value="Delete Run">
+	</form><br>
+<% end %>
 
 <a href="/runs">View all runs</a>
+
+
+
