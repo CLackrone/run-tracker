@@ -1,8 +1,11 @@
 <h1>View all available runs</h1>
 
 <% @runs.each do |run| %>
-	<%= run.location %><br><br>
-	<%= run.date %><br><br>
-	<%= run.distance %><br><br>
+	<div>
+		<p>Location: <%= run.location %></p>
+		<p>Date: <%= run.date %></p>
+		<p>Distance: <%= run.distance %> miles</p>
+		<p>Runner: <%= run.runner.username %></p>
+	</div><br>
 <% end %>
 
