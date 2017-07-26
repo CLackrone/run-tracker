@@ -19,7 +19,6 @@ class RunController < ApplicationController
 
 	post '/runs' do 
 		if params[:location] == "" || params[:date] == "" || params[:distance] == ""
-			#add flash message
 			redirect '/runs/new'
 		else
 			@run = current_user.runs.create(location: params[:location], date: params[:date], distance: params[:distance])
@@ -38,7 +37,7 @@ class RunController < ApplicationController
 
 	get '/runs/:id/edit' do 
 		if logged_in?
-			@run = Run.find_by_id(params[:id])
+			@run = Run.find_by_id(params[:id])	
 			if @run.runner_id == current_user.id 
 				erb :'/runs/edit_run'
 			else
@@ -75,6 +74,8 @@ class RunController < ApplicationController
 			redirect '/login'
 		end
 	end
+
+	
 
 end
 
